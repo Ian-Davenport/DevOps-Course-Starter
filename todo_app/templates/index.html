@@ -13,9 +13,8 @@
       <h2>Items</h2>
       <ul class="list-group mb-4">
 
-      
       {% for item in get_items() %}
-        <li><a href="{{ item.href }}"> {{ item.id }} </a> -  {{item.status}}  -  {{item.title}} </li>  
+        <!-- <li><a href="{{ item.href }}"> {{ item.id }} </a> -  {{item.status}}  -  {{item.title}} </li>   -->
         <p> {{item.id}} -- {{item.status}} -- {{item.title}} </p>
       {% endfor %}
 
@@ -23,7 +22,7 @@
 
       <form 
           method="post" action="/todo">
-          <input type="text">
+          <input type="text" name="item_name">
           <button type="submit">Add Item</button>
       </form>
 

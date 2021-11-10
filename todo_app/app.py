@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config.from_object(Config())
 
 
-@app.route('/', method=['GET'])
+@app.route('/', methods=['GET'])
 def index():
     items = get_items()
     return render_template('index.html', get_items=get_items)
@@ -20,5 +20,5 @@ def add_todo():
     add_item(title=request.form.get('item_name'))
     return redirect(url_for('index'))  
 
-    
+
 
