@@ -1,8 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}To-Do App{% endblock %}
-
-
-
+ç
 
 {% block content %}
   <div class="jumbotron">
@@ -17,23 +15,16 @@
 
       
       {% for item in get_items() %}
-        <!-- <p> {{item}} </p> -->
-        <!-- <p>{{item.id}}</p> <p>{{item.status}}</p>  <p>{{item.title}}</p>
-        <p> {{item.id}}  {{item.status}}  {{item.title}} </p> -->
-        <p>ID: {{item.id}}   Status: {{item.status}}    Title: {{item.title}}</p>  
+        <li><a href="{{ item.href }}"> {{ item.id }} </a> -  {{item.status}}  -  {{item.title}} </li>  
+        <p> {{item.id}} -- {{item.status}} -- {{item.title}} </p>
       {% endfor %}
-
 
       <br><br><br><br>
 
-      <h3>Options </h3>
-
-      <!-- THIS WORKS AS A BUTTON >  -->
       <form 
-          method="get" action="/todo">
-          <button type="submit">New ToDo</button>
-          <button type="submit">Not Functional</button>
-          <button type="submit">Not Functional</button>
+          method="post" action="/todo">
+          <input type="text">
+          <button type="submit">Add Item</button>
       </form>
 
   
