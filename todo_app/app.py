@@ -15,6 +15,7 @@ def index():
     return render_template('index.html', get_items=get_items)
 
 
+
 @app.route('/todo', methods=['POST'])
 def add_todo():  
     add_item(title=request.form.get('item_name'))

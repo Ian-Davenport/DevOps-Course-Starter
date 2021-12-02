@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}To-Do App{% endblock %}
-ç
+
 
 {% block content %}
   <div class="jumbotron">
@@ -14,19 +14,17 @@
       <ul class="list-group mb-4">
 
       {% for item in get_items() %}
-        <!-- <li><a href="{{ item.href }}"> {{ item.id }} </a> -  {{item.status}}  -  {{item.title}} </li>   -->
         <p> {{item.id}} -- {{item.status}} -- {{item.title}} </p>
       {% endfor %}
 
-      <br><br><br><br>
-
       <form 
-          method="post" action="/todo">
-          <input type="text" name="item_name">
+          method="post" action="/todo" style="margin-top:70px">
+          <input type="text" name="item_name" required>
           <button type="submit">Add Item</button>
       </form>
 
-  
+      
+
         <!-- List the todo items here -->
       </ul>
     </div>
