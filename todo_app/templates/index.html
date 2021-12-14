@@ -13,8 +13,8 @@
       <h2>Items</h2>
       <ul class="list-group mb-4">
 
-      {% for item in get_items() %}
-        <p> {{item.id}} -- {{item.status}} -- {{item.title}} </p>
+      {% for item in fetch_all() %}
+        <p> {{item.name}}</p>
       {% endfor %}
 
       <form 
@@ -23,7 +23,13 @@
           <button type="submit">Add Item</button>
       </form>
 
-      
+      <form 
+          method="post" action="/delete_item" style="margin-top:70px">
+        
+          <button type="submit">Delete Item</button>
+    </form>
+
+
 
         <!-- List the todo items here -->
       </ul>
