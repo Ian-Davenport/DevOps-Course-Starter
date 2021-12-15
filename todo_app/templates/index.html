@@ -9,70 +9,50 @@
 {% endblock %}
 
 
-
 {% block content %}
   <div class="jumbotron">
     <h1 class="display-4">To-Do App</h1>
-    <p class="lead">Just another to-do app.</p>
   </div>
 
   <div class="row">
     <div class="col-md-12">
-      <h4>To Do</h4>
       <ul class="list-group mb-4">
 
-      {% for item in fetch_all() %}
-        <p> {{item.name}}                   </item></p>
+      <h2>To Do</h2>
+      {% for item in fetch_todo() %}
+        <p> {{item.name}} </p>
+        <form class="float-end" method="POST" action="/remove/{{item.id}}">
+          <input type="submit" name="dremove" class="btn-secondary" value="DELETE">
+          <input type="hidden" name="remove_id" value="{{item.id}}">
+        </form>
       {% endfor %}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <form 
-          method="post" action="/todo" style="margin-top:70px">
-          <input type="text" name="item_name" required>
-          <button type="submit">Add Item</button>
+       <h2>In Progress:</h2>  
+      {% for item in fetch_in_progress() %}
+      <p> {{item.name}}  </p>
+      <form class="float-end" method="POST" action="/remove/{{item.id}}">
+        <input type="submit" name="remove" class="btn-secondary" value="DELETE">
+        <input type="hidden" name="remove_id" value="{{item.id}}">
       </form>
+      <form class="float-end" method="POST" action="/complete/{{item.id}}">
+        <input type="submit" name="complete" class="btn-secondary" value="Move to Done">
+        <input type="hidden" name="remove_id" value="{{item.id}}">
+      </form>
+      {% endfor %}
 
-      <form 
-          method="post" action="/delete_item" style="margin-top:70px">
-          <button type="submit">Delete Item</button>
-    </form>
+      <h2>Done</h2>
+      {% for item in fetch_done() %}
+      <p> {{item.name}} </p>
+      <form class="float-end" method="POST" action="/remove/{{item.id}}">
+        <input type="submit" name="remove" class="btn-secondary" value="DELETE">
+        <input type="hidden" name="remove_id" value="{{item.id}}">
+      </form>
+      {% endfor %}  
 
 
-
-        <!-- List the todo items here -->
+      <!-- List the todo items here -->
       </ul>
     </div>
   </div>
 {% endblock %}
 
-
-
-<!-- THINGS TO DO >> -->
-<!-- 1 - Use a styling tool to improve visual appeal
-
-     2 - Set up as:  NOT STARTED
-                     (Trello List items here)
-
-                     IN PROGRESS
-                     (Trello List items here)
-
-                     DONE etc
-                     (Trello List items here) -->
