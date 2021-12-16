@@ -21,17 +21,21 @@
       <h2>To Do</h2>
       {% for item in fetch_todo() %}
         <p> {{item.name}} </p>
-        <form class="float-end" method="POST" action="/remove/{{item.id}}">
-          <input type="submit" name="dremove" class="btn-secondary" value="DELETE">
-          <input type="hidden" name="remove_id" value="{{item.id}}">
+       <form class="float-end" method="POST" action="/remove/{{item.id}}">
+          <input type="submit" name="dremove" class="btn-secondary" value="Delete">
+          <input type="hidden" name="remove_id" value="{{item.id}}"></form>
+
+        <form class="float-end" method="POST" action="/complete/{{item.id}}">
+          <input type="submit" name="complete" class="btn-secondary" value="Move to In Progress">
+          <input type="hidden" name="remove_id" value="{{item.id}}">    
         </form>
       {% endfor %}
-
+       <br> 
        <h2>In Progress:</h2>  
       {% for item in fetch_in_progress() %}
       <p> {{item.name}}  </p>
-      <form class="float-end" method="POST" action="/remove/{{item.id}}">
-        <input type="submit" name="remove" class="btn-secondary" value="DELETE">
+      <form class="float-end" method="POST" action="/update/{{item.id}}">
+        <input type="submit" name="update" class="btn-secondary" value="Update">
         <input type="hidden" name="remove_id" value="{{item.id}}">
       </form>
       <form class="float-end" method="POST" action="/complete/{{item.id}}">
@@ -39,12 +43,12 @@
         <input type="hidden" name="remove_id" value="{{item.id}}">
       </form>
       {% endfor %}
-
+      <br>
       <h2>Done</h2>
       {% for item in fetch_done() %}
       <p> {{item.name}} </p>
       <form class="float-end" method="POST" action="/remove/{{item.id}}">
-        <input type="submit" name="remove" class="btn-secondary" value="DELETE">
+        <input type="submit" name="remove" class="btn-secondary" value="Delete">
         <input type="hidden" name="remove_id" value="{{item.id}}">
       </form>
       {% endfor %}  

@@ -75,6 +75,20 @@ def add_task():
         headers=headers
     )
 
+# NEEDS AMENDING
+
+
+def move_task():
+    call = f"https://api.trello.com/1/lists/{todo}/cards?name={title}&key={key}&token={token}"
+    headers = {
+        "Accept": "application/json"
+    }
+    response = requests.request(
+        "PUT",
+        url=call,
+        headers=headers
+    )
+
 
 def delete_task(id):
     call = f"https://api.trello.com/1/cards/{id}?key={key}&token={token}"
@@ -86,4 +100,3 @@ def delete_task(id):
         url=call,
         headers=headers
     )
-
