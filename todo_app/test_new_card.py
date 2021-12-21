@@ -11,7 +11,7 @@ IAN_TOKEN = os.getenv("IAN_TOKEN")
 IAN_BOARD = os.getenv("IAN_BOARD")
 LIST_ID = os.getenv("LIST_ID")
 
-url = "https://api.trello.com/1/cards?idList=619fcb801249d837919f8965&key=0e26d4796e5d6b6281a4a245b1662644&token=053f6466d9322e4e272f1af322656285cc6c301432678605cb7fef5511947a4a&name=Tenth"
+url = "https://api.trello.com/1/cards?idList={LIST_ID}&key={IAN_KEY}&token={IAN_TOKEN}&name=Tenth"
 
 headers = {
     "Accept": "application/json"
