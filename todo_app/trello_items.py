@@ -7,13 +7,9 @@ token = os.getenv('IAN_TOKEN')
 todo = os.getenv('TO_DO_ID')
 inprog = os.getenv('IN_PROGRESS_ID')
 done = os.getenv('DONE_ID')
+list_id = os.getenv('LIST_ID')
 
-
-# response = requests.get(f'https://.api.trello.com/1/boards/{board}/?key={key}&token={token}')
-# print(response.json()[0]['cards'][1]['name'])
-# print(board)
-# print(key)
-# print(token)
+##############################################################################################
 
 
 def fetch_todo():
@@ -63,23 +59,40 @@ def fetch_done():
         if item["name"] == "DONE!":
             return item["cards"]
 
+##############################################################################################
 
-def add_task():
-    call = f"https://api.trello.com/1/lists/{todo}/cards?name={title}&key={key}&token={token}"
-    headers = {
-        "Accept": "application/json"
+
+def new_todo(name):
+    # new_card_url = f"https://api.trello.com/1/lists/{todo}/cards"
+    new_card_url = f"https://api.trello.com/1/cards"
+
+    # headers = {
+    #     "Accept": "application/json"
+    # }
+    # response = requests.request(
+    #     "POST",
+    #     url=call,
+    #     headers=headers
+    # )
+
+    new_card_parameters = {
+        "key": key,
+        "token": token,
+        "idList": list_id,
+        "name": name
     }
-    response = requests.request(
-        "POST",
-        url=call,
-        headers=headers
-    )
 
-# NEEDS AMENDING
+    response = requests.post(new_card_url, parameters=new_card_parameters)
+
+##############################################################################################
 
 
-def move_task():
-    call = f"https://api.trello.com/1/lists/{todo}/cards?name={title}&key={key}&token={token}"
+def move_todo():
+    # call = f"https://api.trello.com/1/lists/{todo}/cards?name={title}&key={key}&token={token}"
+
+    # AMENDED 2ND FEATURE TO LIST_ID >>>
+    call = f"https://api.trello.com/1/lists/{todo}/cards?idList={list_id}&key={key}&token={token}"
+
     headers = {
         "Accept": "application/json"
     }
@@ -88,6 +101,8 @@ def move_task():
         url=call,
         headers=headers
     )
+
+##############################################################################################
 
 
 def delete_task(id):
@@ -100,3 +115,17 @@ def delete_task(id):
         url=call,
         headers=headers
     )
+
+##############################################################################################
+
+# WORKING FEATURES USING localhost:5000
+
+# DELETE CARD (from 'To-Do' column)
+# ADD NEW CARD (in 'To-Do' column)
+
+
+#  FEATURES TO ADD >>
+#  GET NEW 'TO-DO' FORM TO WORK
+#  Move from 'To-Do' to 'In Progress"
+#  Mark a task as 'Complete'
+#  Move from 'In progress' to 'Done'

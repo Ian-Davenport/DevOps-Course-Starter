@@ -53,7 +53,12 @@
       </form>
       {% endfor %}  
 
-
+      <form action="new_todo" method="post">
+        <p>Add a new item</p>
+        <p><input type="text" name="todo"/></p>
+        <!-- <p><input type="text"> </p> -->
+        <p><input type="submit" value="Add item"></p>
+      </form>  
       <!-- List the todo items here -->
       </ul>
     </div>
