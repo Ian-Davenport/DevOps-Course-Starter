@@ -11,6 +11,7 @@ inprog = os.getenv('IN_PROGRESS_ID')
 done = os.getenv('DONE_ID')
 list_id = os.getenv('LIST_ID')
 
+
 ##############################################################################################
 
 
@@ -66,16 +67,18 @@ def fetch_done():
 
 def new_todo(name):
     # new_card_url = f"https://api.trello.com/1/lists/{todo}/cards"
-    new_card_url = f"https://api.trello.com/1/cards"
+    call = f"https://api.trello.com/1/cards"
+    # call = f"https://api.trello.com/1/lists/{todo}/cards?idList={list_id}&key={key}&token={token}"
+    # call = f"https://api.trello.com/1/cards?idList={list_id}&key={key}&token={token}&name={name}"
 
-    # headers = {
-    #     "Accept": "application/json"
-    # }
-    # response = requests.request(
-    #     "POST",
-    #     url=call,
-    #     headers=headers
-    # )
+    headers = {
+        "Accept": "application/json"
+    }
+    response = requests.request(
+        "POST",
+        url=call,
+        headers=headers
+    )
 
     new_card_parameters = {
         "key": key,
@@ -84,7 +87,7 @@ def new_todo(name):
         "name": name
     }
 
-    response = requests.post(new_card_url, parameters=new_card_parameters)
+    response = requests.post(call, parameters=new_card_parameters)
 
 ##############################################################################################
 

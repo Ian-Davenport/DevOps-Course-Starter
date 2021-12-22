@@ -25,13 +25,12 @@
           <input type="submit" name="remove" class="btn-secondary" value="Delete">
           <input type="hidden" name="remove_id" value="{{item.id}}">
         </form>
-
-        <form class="float-end" method="POST" action="/complete/{{item.id}}">
-          <input type="submit" name="complete" class="btn-secondary" value="Move to In Progress">
-          <input type="hidden" name="remove_id" value="{{item.id}}">    
+        <form class="float-end" method="POST" action="/move/{{item.id}}">
+          <input type="submit" name="move" class="btn-secondary" value="Move to In Progress ??">
+          <input type="hidden" name="move_id" value="{{item.id}}">    
         </form>
       {% endfor %}
-       <br> 
+       <br><br> 
        <h2>In Progress:</h2>  
       {% for item in fetch_in_progress() %}
       <p> {{item.name}}  </p>
@@ -40,15 +39,15 @@
         <input type="hidden" name="remove_id" value="{{item.id}}">
       </form>
       <form class="float-end" method="POST" action="/update/{{item.id}}">
-        <input type="submit" name="update" class="btn-secondary" value="Update">
-        <input type="hidden" name="remove_id" value="{{item.id}}">
+        <input type="submit" name="update" class="btn-secondary" value="Update ??">
+        <input type="hidden" name="update_id" value="{{item.id}}">
       </form>
       <form class="float-end" method="POST" action="/complete/{{item.id}}">
-        <input type="submit" name="complete" class="btn-secondary" value="Move to Done">
-        <input type="hidden" name="remove_id" value="{{item.id}}">
+        <input type="submit" name="complete" class="btn-secondary" value="Move to Done ??">
+        <input type="hidden" name="move_id" value="{{item.id}}">
       </form>
       {% endfor %}
-      <br>
+      <br><br>
       <h2>Done</h2>
       {% for item in fetch_done() %}
       <p> {{item.name}} </p>
@@ -58,12 +57,10 @@
       </form>
       {% endfor %}  
 
-
-
-
+      <br><br>
       <form action="new_todo" method="post">
-        <p>Add a new 'To Do' item</p>
-        <p><input type="text" name="todo"/></p>
+        <h3>Add a new 'To Do' item</h3>
+        <p><input type="text" name="todo" value="Add a new item here"/></p>
         <p><input type="submit" value="Add item"></p>
       </form> 
 
