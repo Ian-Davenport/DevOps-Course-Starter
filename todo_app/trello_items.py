@@ -1,5 +1,7 @@
 import requests
 import os
+import json
+
 
 board = os.getenv('IAN_BOARD')
 key = os.getenv('IAN_KEY')
@@ -119,9 +121,8 @@ def delete_task(id):
 ##############################################################################################
 
 # WORKING FEATURES USING localhost:5000
-
-# DELETE CARD (from 'To-Do' column)
-# ADD NEW CARD (in 'To-Do' column)
+#   DELETE CARD (from 'To-Do' column)  Works on website
+#   ADD NEW CARD (in 'To-Do' column)   works using Postman
 
 
 #  FEATURES TO ADD >>
@@ -129,3 +130,8 @@ def delete_task(id):
 #  Move from 'To-Do' to 'In Progress"
 #  Mark a task as 'Complete'
 #  Move from 'In progress' to 'Done'
+
+#  BOARDS ->
+#  619fcb801249d837919f8965 = To-Do
+#  619fcb801249d837919f8966 = In Progress
+#  619fcb801249d837919f8968 = DONE

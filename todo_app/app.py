@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, request, url_for
 from todo_app.trello_items import new_todo, fetch_todo, fetch_in_progress, fetch_done, delete_task
 from todo_app.flask_config import Config
+
+
 app = Flask(__name__)
 app.config.from_object(Config())
 
@@ -26,8 +28,6 @@ def new_todo():
     item = request.form['todo']
     new_todo(item)
     return redirect(url_for('index'))
-
-# add_task(title=request.form.get("item_name"))
 
 
 ###########  DELETE TO-DO   ##########
