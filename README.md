@@ -49,11 +49,17 @@ You should see output similar to the following:
  * Debugger is active!
  * Debugger PIN: 226-556-590
 ```
-Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+Now visit (http://localhost:5000/) in your web browser to view the app.
+
+
+## Changes
+A new Item class has been added. This is located under the file 'todo_item.py'
+This class renders each To-Do task under the relevant heading of 'To Do', 'In progress' 
+and 'Done' relevant to the ID of the Trello list it belongs to.
+
+## Trello Board
+The URL for the actual Trello board is: https://trello.com/b/hw58nNuk/ians-board
 
 
 
 
-#######################################
-   TO RUN:   poetry run flask run
-#######################################
