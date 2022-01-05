@@ -14,7 +14,6 @@ list_id = os.getenv('LIST_ID')
 
 ##############################################################################################
 
-
 def fetch_todo():
     call = f"https://api.trello.com/1/boards/{board}/lists?key={key}&token={token}&cards=open"
     headers = {

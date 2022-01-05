@@ -1,3 +1,4 @@
+from os import name
 from flask import Flask, render_template, redirect, request, url_for
 from todo_app.trello_items import new_todo, fetch_todo, fetch_in_progress, fetch_done, delete_task
 from todo_app.flask_config import Config
@@ -23,10 +24,10 @@ def update(id):
 
 
 ###########  NEW TO-DO  ################
-@app.route('/new_todo/', methods=['POST'])
+@app.route('/new_todo', methods=['POST'])
 def new_todo():
-    item = request.form['todo']
-    new_todo(item)
+    name = request.form['todo']
+    new_todo(name)
     return redirect(url_for('index'))
 
 
