@@ -19,8 +19,8 @@ class Item:
         self.status = status
 
     @classmethod
-    def from_trello_card(cls, card, list):
-        return cls(card['id'], card['name'], list['name'])
+    def from_trello_card(cls, card, list_name):
+        return cls(card['id'], card['name'], list_name)
 
 ##############################################################################################
 
@@ -36,9 +36,17 @@ def fetch_todo():
         headers=headers
     )
     result = response.json()
+    # for item in result:
+    #     if item["name"] == "To-Do":
+    #         return item["cards"]
+
+    tasks = []
     for item in result:
-        if item["name"] == "To-Do":
-            return item["cards"]
+        if item['name'] == 'To-Do':
+            for card in item['cards']:
+                task = Item.from_trello_card(card, "To-Do")
+                tasks.append(task)
+    return tasks
 
 
 def fetch_in_progress():
@@ -52,9 +60,17 @@ def fetch_in_progress():
         headers=headers
     )
     result = response.json()
+    # for item in result:
+    #     if item["name"] == "In Progress":
+    #         return item["cards"]
+
+    tasks = []
     for item in result:
-        if item["name"] == "In Progress":
-            return item["cards"]
+        if item['name'] == 'In Progress':
+            for card in item['cards']:
+                task = Item.from_trello_card(card, "In Progress")
+                tasks.append(task)
+    return tasks
 
 
 def fetch_done():
@@ -68,9 +84,17 @@ def fetch_done():
         headers=headers
     )
     result = response.json()
+    # for item in result:
+    #     if item["name"] == "DONE!":
+    #         return item["cards"]
+
+    tasks = []
     for item in result:
-        if item["name"] == "DONE!":
-            return item["cards"]
+        if item['name'] == 'DONE!':
+            for card in item['cards']:
+                task = Item.from_trello_card(card, "DONE!")
+                tasks.append(task)
+    return tasks
 
 ##############################################################################################
 
@@ -132,4 +156,3 @@ def delete_task(id):
     )
 
 ##############################################################################################
-

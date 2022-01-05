@@ -20,7 +20,7 @@
 
 
       <h2>To Do</h2>
-      {% for item in fetch_todo() %}
+      {% for item in tasks %}
         <p> {{item.name}} </p>
        <form class="float-end" method="POST" action="/remove/{{item.id}}">
           <input type="submit" name="remove" class="btn-secondary" value="Delete">
@@ -30,13 +30,9 @@
           <input type="submit" name="inprog" class="btn-secondary" value="Move to In Progress">
           <input type="hidden" name="inprog_id" value="{{item.id}}">    
         </form>
-        <form class="float-end" method="POST" action="/move_to_done/{{item.id}}">
-          <input type="submit" name="complete" class="btn-secondary" value="Mark Complete">
-          <input type="hidden" name="complete_id" value="{{item.id}}">
-        </form>
       {% endfor %}
 
-      <!-- NEW TO-DO ITEM CAPTURE -->
+      <!-- NEW TO-DO ITEM -->
       <br><br> 
       <form action="/new_todo" method="POST">
         <h3>Add a new 'To Do' item</h3>
@@ -48,7 +44,7 @@
 
        <br><br> 
        <h2>In Progress:</h2>  
-      {% for item in fetch_in_progress() %}
+      {% for item in in_progress_tasks %}
       <p> {{item.name}}  </p>
       <form class="float-end" method="POST" action="/remove/{{item.id}}">
         <input type="submit" name="remove" class="btn-secondary" value="Delete">
@@ -62,7 +58,7 @@
 
       <br><br>
       <h2>Done</h2>
-      {% for item in fetch_done() %}
+      {% for item in done_tasks %}
       <p> {{item.name}} </p>
       <form class="float-end" method="POST" action="/move_to_inprog/{{item.id}}">
         <input type="submit" name="inprog" class="btn-secondary" value="Move to In Progress">

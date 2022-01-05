@@ -11,26 +11,14 @@ app.config.from_object(Config())
 ##########  GET ALL CARDS  ##########
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html', fetch_todo=fetch_todo, fetch_in_progress=fetch_in_progress, fetch_done=fetch_done)
+    tasks = fetch_todo()
+    in_progress_tasks = fetch_in_progress()
+    done_tasks = fetch_done()
+    return render_template('index.html', tasks=tasks, in_progress_tasks=in_progress_tasks, done_tasks=done_tasks)
 
 ##############################################################################################
 
 
-###########  MOVE TO DONE  ################
-@app.route('/move_to_done/<id>', methods=['POST'])
-def mark_done(id):
-    move_to_done(id=request.form['complete_id'])
-    return redirect(url_for('index'))
-
-
-###########  MOVE TO IN PROGRESS  ################
-@app.route('/move_to_inprog/<id>', methods=['POST'])
-def mark_inprog(id):
-    move_to_inprog(id=request.form['inprog_id'])
-    return redirect(url_for('index'))
-
-
-###########  NEW TO-DO  ################
 @app.route('/new_todo', methods=['POST'])
 def add_new_todo():
     # name = request.form['todo']
@@ -38,7 +26,18 @@ def add_new_todo():
     return redirect(url_for('index'))
 
 
-###########  DELETE TO-DO   ##########
+@app.route('/move_to_inprog/<id>', methods=['POST'])
+def mark_inprog(id):
+    move_to_inprog(id=request.form['inprog_id'])
+    return redirect(url_for('index'))
+
+
+@app.route('/move_to_done/<id>', methods=['POST'])
+def mark_done(id):
+    move_to_done(id=request.form['complete_id'])
+    return redirect(url_for('index'))
+
+
 @app.route('/remove/<id>', methods=['POST'])
 def delete(id):
     delete_task(id=request.form['remove_id'])
