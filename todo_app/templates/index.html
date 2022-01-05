@@ -26,9 +26,13 @@
           <input type="submit" name="remove" class="btn-secondary" value="Delete">
           <input type="hidden" name="remove_id" value="{{item.id}}">
         </form>
-        <form class="float-end" method="POST" action="/move/{{item.id}}">
-          <input type="submit" name="move" class="btn-secondary" value="Move to In Progress ??">
-          <input type="hidden" name="move_id" value="{{item.id}}">    
+        <form class="float-end" method="POST" action="/move_to_inprog/{{item.id}}">
+          <input type="submit" name="inprog" class="btn-secondary" value="Move to In Progress">
+          <input type="hidden" name="inprog_id" value="{{item.id}}">    
+        </form>
+        <form class="float-end" method="POST" action="/move_to_done/{{item.id}}">
+          <input type="submit" name="complete" class="btn-secondary" value="Mark Complete">
+          <input type="hidden" name="complete_id" value="{{item.id}}">
         </form>
       {% endfor %}
 
@@ -36,10 +40,9 @@
       <br><br> 
       <form action="/new_todo" method="POST">
         <h3>Add a new 'To Do' item</h3>
-        <p><input type="text" name="Name" id="name" required/></p>
+        <p><input type="text" name="item_name" id="name" required/></p>
         <p><input type="submit" value="Add item"></p>
       </form> 
-
 
 
 
@@ -51,13 +54,9 @@
         <input type="submit" name="remove" class="btn-secondary" value="Delete">
         <input type="hidden" name="remove_id" value="{{item.id}}">
       </form>
-      <form class="float-end" method="POST" action="/update/{{item.id}}">
-        <input type="submit" name="update" class="btn-secondary" value="Update ??">
-        <input type="hidden" name="update_id" value="{{item.id}}">
-      </form>
-      <form class="float-end" method="POST" action="/complete/{{item.id}}">
-        <input type="submit" name="complete" class="btn-secondary" value="Move to Done ??">
-        <input type="hidden" name="move_id" value="{{item.id}}">
+      <form class="float-end" method="POST" action="/move_to_done/{{item.id}}">
+        <input type="submit" name="complete" class="btn-secondary" value="Mark Complete">
+        <input type="hidden" name="complete_id" value="{{item.id}}">
       </form>
       {% endfor %}
 
@@ -65,6 +64,10 @@
       <h2>Done</h2>
       {% for item in fetch_done() %}
       <p> {{item.name}} </p>
+      <form class="float-end" method="POST" action="/move_to_inprog/{{item.id}}">
+        <input type="submit" name="inprog" class="btn-secondary" value="Move to In Progress">
+        <input type="hidden" name="inprog_id" value="{{item.id}}">    
+      </form>
       <form class="float-end" method="POST" action="/remove/{{item.id}}">
         <input type="submit" name="remove" class="btn-secondary" value="Delete">
         <input type="hidden" name="remove_id" value="{{item.id}}">

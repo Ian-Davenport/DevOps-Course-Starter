@@ -6,13 +6,24 @@ import json
 board = os.getenv('IAN_BOARD')
 key = os.getenv('IAN_KEY')
 token = os.getenv('IAN_TOKEN')
-todo = os.getenv('TO_DO_ID')
-inprog = os.getenv('IN_PROGRESS_ID')
-done = os.getenv('DONE_ID')
+todo = os.getenv('To-Do')
+inprog = os.getenv('In_Progress')
+done = os.getenv('DONE!')
 list_id = os.getenv('LIST_ID')
 
 
+class Item:
+    def __init__(self, id, name, status='To Do'):
+        self.id = id
+        self.name = name
+        self.status = status
+
+    @classmethod
+    def from_trello_card(cls, card, list):
+        return cls(card['id'], card['name'], list['name'])
+
 ##############################################################################################
+
 
 def fetch_todo():
     call = f"https://api.trello.com/1/boards/{board}/lists?key={key}&token={token}&cards=open"
@@ -64,11 +75,8 @@ def fetch_done():
 ##############################################################################################
 
 
-def new_todo(name):
-    # new_card_url = f"https://api.trello.com/1/lists/{todo}/cards"
-    call = f"https://api.trello.com/1/cards"
-    # call = f"https://api.trello.com/1/lists/{todo}/cards?idList={list_id}&key={key}&token={token}"
-    # call = f"https://api.trello.com/1/cards?idList={list_id}&key={key}&token={token}&name={name}"
+def new_todo(title):
+    call = f"https://api.trello.com/1/lists/{todo}/cards?name={title}&key={key}&token={token}"
 
     headers = {
         "Accept": "application/json"
@@ -79,23 +87,26 @@ def new_todo(name):
         headers=headers
     )
 
-    new_card_parameters = {
-        "key": key,
-        "token": token,
-        "idList": list_id,
-        "name": name
-    }
+##############################################################################################
 
-    response = requests.post(call, parameters=new_card_parameters)
+
+def move_to_done(id):
+    call = f"https://api.trello.com/1/cards/{id}?idList={done}&key={key}&token={token}"
+
+    headers = {
+        "Accept": "application/json"
+    }
+    response = requests.request(
+        "PUT",
+        url=call,
+        headers=headers
+    )
 
 ##############################################################################################
 
 
-def move_todo():
-    # call = f"https://api.trello.com/1/lists/{todo}/cards?name={title}&key={key}&token={token}"
-
-    # AMENDED 2ND FEATURE TO LIST_ID >>>
-    call = f"https://api.trello.com/1/lists/{todo}/cards?idList={list_id}&key={key}&token={token}"
+def move_to_inprog(id):
+    call = f"https://api.trello.com/1/cards/{id}?idList={inprog}&key={key}&token={token}"
 
     headers = {
         "Accept": "application/json"
@@ -122,18 +133,3 @@ def delete_task(id):
 
 ##############################################################################################
 
-# WORKING FEATURES USING localhost:5000
-#   DELETE CARD (from 'To-Do' column)  Works on website
-#   ADD NEW CARD (in 'To-Do' column)   works using Postman
-
-
-#  FEATURES TO ADD >>
-#  GET NEW 'TO-DO' FORM TO WORK
-#  Move from 'To-Do' to 'In Progress"
-#  Mark a task as 'Complete'
-#  Move from 'In progress' to 'Done'
-
-#  BOARDS ->
-#  619fcb801249d837919f8965 = To-Do
-#  619fcb801249d837919f8966 = In Progress
-#  619fcb801249d837919f8968 = DONE
