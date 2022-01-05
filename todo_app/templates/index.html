@@ -1,32 +1,80 @@
+
 {% extends "layout.html" %}
 {% block title %}To-Do App{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='bootsrap.css')}}">
+{% endblock %}
 
 
 {% block content %}
   <div class="jumbotron">
     <h1 class="display-4">To-Do App</h1>
-    <p class="lead">Just another to-do app.</p>
   </div>
 
   <div class="row">
     <div class="col-md-12">
-      <h2>Items</h2>
       <ul class="list-group mb-4">
 
-      {% for item in get_items() %}
-        <p> {{item.id}} -- {{item.status}} -- {{item.title}} </p>
+
+      <h2>To Do</h2>
+      {% for item in tasks %}
+        <p> {{item.name}} </p>
+       <form class="float-end" method="POST" action="/remove/{{item.id}}">
+          <input type="submit" name="remove" class="btn-secondary" value="Delete">
+          <input type="hidden" name="remove_id" value="{{item.id}}">
+        </form>
+        <form class="float-end" method="POST" action="/move_to_inprog/{{item.id}}">
+          <input type="submit" name="inprog" class="btn-secondary" value="Move to In Progress">
+          <input type="hidden" name="inprog_id" value="{{item.id}}">    
+        </form>
       {% endfor %}
 
-      <form 
-          method="post" action="/todo" style="margin-top:70px">
-          <input type="text" name="item_name" required>
-          <button type="submit">Add Item</button>
+      <!-- NEW TO-DO ITEM -->
+      <br><br> 
+      <form action="/new_todo" method="POST">
+        <h3>Add a new 'To Do' item</h3>
+        <p><input type="text" name="item_name" id="name" required/></p>
+        <p><input type="submit" value="Add item"></p>
+      </form> 
+
+
+
+       <br><br> 
+       <h2>In Progress:</h2>  
+      {% for item in in_progress_tasks %}
+      <p> {{item.name}}  </p>
+      <form class="float-end" method="POST" action="/remove/{{item.id}}">
+        <input type="submit" name="remove" class="btn-secondary" value="Delete">
+        <input type="hidden" name="remove_id" value="{{item.id}}">
       </form>
+      <form class="float-end" method="POST" action="/move_to_done/{{item.id}}">
+        <input type="submit" name="complete" class="btn-secondary" value="Mark Complete">
+        <input type="hidden" name="complete_id" value="{{item.id}}">
+      </form>
+      {% endfor %}
 
-      
+      <br><br>
+      <h2>Done</h2>
+      {% for item in done_tasks %}
+      <p> {{item.name}} </p>
+      <form class="float-end" method="POST" action="/move_to_inprog/{{item.id}}">
+        <input type="submit" name="inprog" class="btn-secondary" value="Move to In Progress">
+        <input type="hidden" name="inprog_id" value="{{item.id}}">    
+      </form>
+      <form class="float-end" method="POST" action="/remove/{{item.id}}">
+        <input type="submit" name="remove" class="btn-secondary" value="Delete">
+        <input type="hidden" name="remove_id" value="{{item.id}}">
+      </form>
+      {% endfor %}  
 
-        <!-- List the todo items here -->
+      <br><br><br>
+
       </ul>
     </div>
   </div>
-{% endblock %}
+  {% endblock %}
+
+
