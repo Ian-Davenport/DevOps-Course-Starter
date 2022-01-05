@@ -1,6 +1,7 @@
 import requests
 import os
 import json
+from todo_app.todo_item import Item
 
 
 board = os.getenv('IAN_BOARD')
@@ -10,17 +11,6 @@ todo = os.getenv('To-Do')
 inprog = os.getenv('In_Progress')
 done = os.getenv('DONE!')
 list_id = os.getenv('LIST_ID')
-
-
-class Item:
-    def __init__(self, id, name, status='To Do'):
-        self.id = id
-        self.name = name
-        self.status = status
-
-    @classmethod
-    def from_trello_card(cls, card, list_name):
-        return cls(card['id'], card['name'], list_name)
 
 ##############################################################################################
 
@@ -36,9 +26,6 @@ def fetch_todo():
         headers=headers
     )
     result = response.json()
-    # for item in result:
-    #     if item["name"] == "To-Do":
-    #         return item["cards"]
 
     tasks = []
     for item in result:
@@ -47,6 +34,8 @@ def fetch_todo():
                 task = Item.from_trello_card(card, "To-Do")
                 tasks.append(task)
     return tasks
+
+########################################
 
 
 def fetch_in_progress():
@@ -60,9 +49,6 @@ def fetch_in_progress():
         headers=headers
     )
     result = response.json()
-    # for item in result:
-    #     if item["name"] == "In Progress":
-    #         return item["cards"]
 
     tasks = []
     for item in result:
@@ -71,6 +57,8 @@ def fetch_in_progress():
                 task = Item.from_trello_card(card, "In Progress")
                 tasks.append(task)
     return tasks
+
+########################################
 
 
 def fetch_done():
@@ -84,9 +72,6 @@ def fetch_done():
         headers=headers
     )
     result = response.json()
-    # for item in result:
-    #     if item["name"] == "DONE!":
-    #         return item["cards"]
 
     tasks = []
     for item in result:

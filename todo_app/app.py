@@ -7,16 +7,15 @@ from todo_app.flask_config import Config
 app = Flask(__name__)
 app.config.from_object(Config())
 
+##############################################################################################
 
-##########  GET ALL CARDS  ##########
+
 @app.route('/', methods=['GET'])
 def index():
     tasks = fetch_todo()
     in_progress_tasks = fetch_in_progress()
     done_tasks = fetch_done()
     return render_template('index.html', tasks=tasks, in_progress_tasks=in_progress_tasks, done_tasks=done_tasks)
-
-##############################################################################################
 
 
 @app.route('/new_todo', methods=['POST'])
