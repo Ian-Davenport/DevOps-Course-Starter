@@ -1,5 +1,4 @@
-import requests
-import os
+import requests, os
 from todo_app.todo_item import Item
 
 board = os.getenv('IAN_BOARD')
@@ -21,7 +20,7 @@ class Item:
         return cls(card['id'], card['name'], list_name)
 
 
-def fetch_list(list_name):
+def fetch_list():
     call = f"https://api.trello.com/1/boards/{board}/lists?key={key}&token={token}&cards=open"
     headers = {
         "Accept": "application/json"
@@ -33,12 +32,12 @@ def fetch_list(list_name):
     )
     result = response.json()
 
+
     tasks = []
-    for item in result:
-        if item['name'] == list_name:
-            for card in item['cards']:
-                task = Item.from_trello_card(card, list_name)
-                tasks.append(task)
+    for list in result:
+        for card in list['cards']:
+            task = Item.from_trello_card(card, list["name"])
+            tasks.append(task)
     return tasks
 
 
