@@ -1,8 +1,6 @@
 import requests
 import os
-import json
 from todo_app.todo_item import Item
-
 
 board = os.getenv('IAN_BOARD')
 key = os.getenv('IAN_KEY')
@@ -10,12 +8,20 @@ token = os.getenv('IAN_TOKEN')
 todo = os.getenv('To-Do')
 inprog = os.getenv('In_Progress')
 done = os.getenv('DONE!')
-list_id = os.getenv('LIST_ID')
-
-##############################################################################################
 
 
-def fetch_todo():
+class Item:
+    def __init__(self, id, name, status='To Do'):
+        self.id = id
+        self.name = name
+        self.status = status
+
+    @classmethod
+    def from_trello_card(cls, card, list_name):
+        return cls(card['id'], card['name'], list_name)
+
+
+def fetch_list(list_name):
     call = f"https://api.trello.com/1/boards/{board}/lists?key={key}&token={token}&cards=open"
     headers = {
         "Accept": "application/json"
@@ -29,59 +35,11 @@ def fetch_todo():
 
     tasks = []
     for item in result:
-        if item['name'] == 'To-Do':
+        if item['name'] == list_name:
             for card in item['cards']:
-                task = Item.from_trello_card(card, "To-Do")
+                task = Item.from_trello_card(card, list_name)
                 tasks.append(task)
     return tasks
-
-########################################
-
-
-def fetch_in_progress():
-    call = f"https://api.trello.com/1/boards/{board}/lists?key={key}&token={token}&cards=open"
-    headers = {
-        "Accept": "application/json"
-    }
-    response = requests.request(
-        "GET",
-        url=call,
-        headers=headers
-    )
-    result = response.json()
-
-    tasks = []
-    for item in result:
-        if item['name'] == 'In Progress':
-            for card in item['cards']:
-                task = Item.from_trello_card(card, "In Progress")
-                tasks.append(task)
-    return tasks
-
-########################################
-
-
-def fetch_done():
-    call = f"https://api.trello.com/1/boards/{board}/lists?key={key}&token={token}&cards=open"
-    headers = {
-        "Accept": "application/json"
-    }
-    response = requests.request(
-        "GET",
-        url=call,
-        headers=headers
-    )
-    result = response.json()
-
-    tasks = []
-    for item in result:
-        if item['name'] == 'DONE!':
-            for card in item['cards']:
-                task = Item.from_trello_card(card, "DONE!")
-                tasks.append(task)
-    return tasks
-
-##############################################################################################
 
 
 def new_todo(title):
@@ -96,8 +54,6 @@ def new_todo(title):
         headers=headers
     )
 
-##############################################################################################
-
 
 def move_to_done(id):
     call = f"https://api.trello.com/1/cards/{id}?idList={done}&key={key}&token={token}"
@@ -110,8 +66,6 @@ def move_to_done(id):
         url=call,
         headers=headers
     )
-
-##############################################################################################
 
 
 def move_to_inprog(id):
@@ -126,8 +80,6 @@ def move_to_inprog(id):
         headers=headers
     )
 
-##############################################################################################
-
 
 def delete_task(id):
     call = f"https://api.trello.com/1/cards/{id}?key={key}&token={token}"
@@ -139,5 +91,3 @@ def delete_task(id):
         url=call,
         headers=headers
     )
-
-##############################################################################################

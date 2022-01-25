@@ -1,26 +1,22 @@
-from os import name
-from flask import Flask, render_template, redirect, request, url_for
-from todo_app.trello_items import new_todo, fetch_todo, fetch_in_progress, fetch_done, delete_task, move_to_done, move_to_inprog
-from todo_app.flask_config import Config
 
+from flask import Flask, render_template, redirect, request, url_for
+from todo_app.trello_items import fetch_list, new_todo, delete_task, move_to_done, move_to_inprog
+from todo_app.flask_config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config())
 
-##############################################################################################
-
 
 @app.route('/', methods=['GET'])
 def index():
-    tasks = fetch_todo()
-    in_progress_tasks = fetch_in_progress()
-    done_tasks = fetch_done()
-    return render_template('index.html', tasks=tasks, in_progress_tasks=in_progress_tasks, done_tasks=done_tasks)
+    todo_tasks = fetch_list('To-Do')
+    in_progress_tasks = fetch_list('In Progress')
+    done_tasks = fetch_list('DONE!')
+    return render_template('index.html', todo_tasks=todo_tasks, in_progress_tasks=in_progress_tasks, done_tasks=done_tasks)
 
 
 @app.route('/new_todo', methods=['POST'])
 def add_new_todo():
-    # name = request.form['todo']
     new_todo(title=request.form.get('item_name'))
     return redirect(url_for('index'))
 
