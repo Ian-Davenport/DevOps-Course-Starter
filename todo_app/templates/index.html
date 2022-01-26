@@ -5,7 +5,7 @@
 
 {% block content %}
   <div class="jumbotron">
-    <h1 class="display-4">To-Do App</h1>
+    <h1 class="display-4">'To Do' App</h1>
   </div>
 
   <div class="row">
@@ -14,7 +14,7 @@
 
 
       <h2>To Do Tasks:</h2>
-      {% for item in view_model.in_progress_items %}
+      {% for item in view_model.to_do_items %}
           <p> {{item.name}} </p>
          <form class="float-end" method="POST" action="/remove/{{item.id}}">
             <input type="submit" name="remove" class="btn-secondary" value="Delete">
@@ -26,9 +26,6 @@
           </form>
       {% endfor %}        
 
-
-
-
       <!-- Form for a new To-Do item -->
       <br><br> 
       <form action="/new_todo" method="POST">
@@ -39,7 +36,10 @@
 
 
        <br><br> 
+
        <h2>In Progress Tasks:</h2>  
+       <!-- Why not working for 'in_progress_items' when works when
+       change to either 'to_do_items' or 'done_items' ?? -->
        {% for item in view_model.in_progress_items %}
       <p> {{item.name}}  </p>
       <form class="float-end" method="POST" action="/remove/{{item.id}}">

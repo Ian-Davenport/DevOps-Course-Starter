@@ -6,7 +6,7 @@ class ViewModel:
     def to_do_items(self):
         to_do_output = []
         for item in self._items:
-            if item.status == "To-Do":
+            if item.status == "To Do":
                 to_do_output.append(item)
 
         return to_do_output
@@ -24,7 +24,7 @@ class ViewModel:
     def done_items(self):
         done_output = []
         for item in self._items:
-            if item.status == "DONE!":
+            if item.status == "Done":
                 done_output.append(item)
 
         return done_output

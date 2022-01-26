@@ -1,12 +1,13 @@
-import requests, os
-from todo_app.todo_item import Item
+import requests
+import os
+from todo_app.class_todo_item import Item
 
 board = os.getenv('IAN_BOARD')
 key = os.getenv('IAN_KEY')
 token = os.getenv('IAN_TOKEN')
-todo = os.getenv('To-Do')
-inprog = os.getenv('In_Progress')
-done = os.getenv('DONE!')
+todo = os.getenv('TO_DO')
+inprog = os.getenv('IN_PROGRESS')
+done = os.getenv('DONE')
 
 
 class Item:
@@ -31,7 +32,6 @@ def fetch_list():
         headers=headers
     )
     result = response.json()
-
 
     tasks = []
     for list in result:
