@@ -1,6 +1,6 @@
 import requests
 import os
-from todo_app.class_todo_item import Item
+from todo_app.todo_item import TodoItem
 
 board = os.getenv('IAN_BOARD')
 key = os.getenv('IAN_KEY')
@@ -10,15 +10,6 @@ inprog = os.getenv('IN_PROGRESS')
 done = os.getenv('DONE')
 
 
-class Item:
-    def __init__(self, id, name, status='To Do'):
-        self.id = id
-        self.name = name
-        self.status = status
-
-    @classmethod
-    def from_trello_card(cls, card, list_name):
-        return cls(card['id'], card['name'], list_name)
 
 
 def fetch_list():
@@ -36,7 +27,7 @@ def fetch_list():
     tasks = []
     for list in result:
         for card in list['cards']:
-            task = Item.from_trello_card(card, list["name"])
+            task = TodoItem.from_trello_card(card, list["name"])
             tasks.append(task)
     return tasks
 
