@@ -61,7 +61,7 @@ Please follow these steps in order to run the project:
 
 # Testing
 
-A testing secion can be found in the code named 'test_app.py'.
+A testing secion can be found in the code named 'test_view_model.py'.
 Three unit tests have been created.
 
 To check on the testing, please run:
