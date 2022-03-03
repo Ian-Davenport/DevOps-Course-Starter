@@ -5,7 +5,7 @@
 
 {% block content %}
   <div class="jumbotron">
-    <h1 class="display-4">To-Do App</h1>
+    <h1 class="display-4">'To Do' App</h1>
   </div>
 
   <div class="row">
@@ -14,17 +14,17 @@
 
 
       <h2>To Do Tasks:</h2>
-      {% for item in todo_tasks %}
-        <p> {{item.name}} </p>
-       <form class="float-end" method="POST" action="/remove/{{item.id}}">
-          <input type="submit" name="remove" class="btn-secondary" value="Delete">
-          <input type="hidden" name="remove_id" value="{{item.id}}">
-        </form>
-        <form class="float-end" method="POST" action="/move_to_inprog/{{item.id}}">
-          <input type="submit" name="inprog" class="btn-secondary" value="Move to In Progress">
-          <input type="hidden" name="inprog_id" value="{{item.id}}">    
-        </form>
-      {% endfor %}
+      {% for item in view_model.to_do_items %}
+          <p> {{item.name}} </p>
+         <form class="float-end" method="POST" action="/remove/{{item.id}}">
+            <input type="submit" name="remove" class="btn-secondary" value="Delete">
+            <input type="hidden" name="remove_id" value="{{item.id}}">
+          </form>
+          <form class="float-end" method="POST" action="/move_to_inprog/{{item.id}}">
+            <input type="submit" name="inprog" class="btn-secondary" value="Move to In Progress">
+            <input type="hidden" name="inprog_id" value="{{item.id}}">    
+          </form>
+      {% endfor %}        
 
       <!-- Form for a new To-Do item -->
       <br><br> 
@@ -36,8 +36,11 @@
 
 
        <br><br> 
+
        <h2>In Progress Tasks:</h2>  
-      {% for item in in_progress_tasks %}
+       <!-- Why not working for 'in_progress_items' when works when
+       change to either 'to_do_items' or 'done_items' ?? -->
+       {% for item in view_model.in_progress_items %}
       <p> {{item.name}}  </p>
       <form class="float-end" method="POST" action="/remove/{{item.id}}">
         <input type="submit" name="remove" class="btn-secondary" value="Delete">
@@ -51,7 +54,7 @@
 
       <br><br>
       <h2>Completed Tasks</h2>
-      {% for item in done_tasks %}
+      {% for item in view_model.done_items %}
       <p> {{item.name}} </p>
       <form class="float-end" method="POST" action="/move_to_inprog/{{item.id}}">
         <input type="submit" name="inprog" class="btn-secondary" value="Move to Doing">
@@ -62,6 +65,9 @@
         <input type="hidden" name="remove_id" value="{{item.id}}">
       </form>
       {% endfor %}  
+
+
+
 
       <br><br><br>
 

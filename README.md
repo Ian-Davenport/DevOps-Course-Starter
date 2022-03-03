@@ -57,3 +57,17 @@ Please follow these steps in order to run the project:
 - Generate a Key
 - Generate a Token
 - Declare your Key & Token in the .env file
+
+
+# Testing
+
+A testing secion can be found in the code named 'test_view_model.py'.
+Three unit tests have been created.
+
+To check on the testing, please run:
+$ poetry run pytest
+
+The tests are to establish the three lists used in the app ("To Do", "In Progress" & "Done") will only show their own items only.
+
+
+

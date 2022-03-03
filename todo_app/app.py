@@ -2,6 +2,7 @@
 from flask import Flask, render_template, redirect, request, url_for
 from todo_app.trello_items import fetch_list, new_todo, delete_task, move_to_done, move_to_inprog
 from todo_app.flask_config import Config
+from todo_app.view_model import ViewModel
 
 app = Flask(__name__)
 app.config.from_object(Config())
@@ -9,10 +10,10 @@ app.config.from_object(Config())
 
 @app.route('/', methods=['GET'])
 def index():
-    todo_tasks = fetch_list('To-Do')
-    in_progress_tasks = fetch_list('In Progress')
-    done_tasks = fetch_list('DONE!')
-    return render_template('index.html', todo_tasks=todo_tasks, in_progress_tasks=in_progress_tasks, done_tasks=done_tasks)
+    items = fetch_list()
+    item_view_model = ViewModel(items)
+    
+    return render_template('index.html', view_model=item_view_model)
 
 
 @app.route('/new_todo', methods=['POST'])
