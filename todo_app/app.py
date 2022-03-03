@@ -8,7 +8,6 @@ app = Flask(__name__)
 app.config.from_object(Config())
 
 
-
 @app.route('/', methods=['GET'])
 def index():
     items = fetch_list()
