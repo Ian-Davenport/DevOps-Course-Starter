@@ -10,7 +10,7 @@
       private: no
 
     - name: user_api_token        
-      prompt: What is your API Token ?
+      prompt: What is your API Token ? 
       private: no
 
     - name: user_board_id        
@@ -22,7 +22,7 @@
       private: no
 
     - name: user_in_progress_board        
-      prompt: What is your In-Progress board ID ?
+      prompt: What is your In-Progress board ID ? 
       private: no
 
     - name: user_done_board        
@@ -67,6 +67,7 @@
     ansible.builtin.shell: 
       cmd: bash -lc 'poetry install' 
       chdir: /opt/todoapp
+      creates: .venv
 
 
   - name: create a env file from a template
@@ -74,8 +75,17 @@
       src: .env.j2
       dest: /opt/todoapp/.env
 
+  - name: copy app.service from controller to host
+    ansible.builtin.copy:
+      src: todoapp.service
+      dest: /etc/systemd/system/todoapp.service
+    become: yes
 
-   
+  - name: task to start To Do App
+    ansible.builtin.systemd:
+      daemon_reload: yes
+    become: yes
+
 
 
 
