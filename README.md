@@ -70,4 +70,12 @@ $ poetry run pytest
 The tests are to establish the three lists used in the app ("To Do", "In Progress" & "Done") will only show their own items only.
 
 
+# Ansible
+
+Log-on to your Controller Node and run the following to provision the host VM:
+
+$ ansible-playbook playbook -i Inventory
+
+Ensure you can reach your Host VM via SSH for this to run successfully.
+
 
