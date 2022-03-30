@@ -1,0 +1,94 @@
+- name: install todo app on webserver
+  hosts: nodes
+  user: ec2-user
+  environment: 
+  
+  vars_prompt:
+    
+    - name: user_api_key
+      prompt: What is your API Key ?
+      private: no
+
+    - name: user_api_token        
+      prompt: What is your API Token ? 
+      private: no
+
+    - name: user_board_id        
+      prompt: What is your Trello Board ID ?
+      private: no
+
+    - name: user_to_do_board        
+      prompt: What is your To-To board ID ?
+      private: no
+
+    - name: user_in_progress_board        
+      prompt: What is your In-Progress board ID ? 
+      private: no
+
+    - name: user_done_board        
+      prompt: What is your Done board ID ?
+      private: no
+
+   
+     
+  tasks: 
+  - name: install git
+    ansible.builtin.yum: 
+      name: git
+      state: latest
+    become: yes
+
+  - name: install python3
+    ansible.builtin.yum:
+      name: python3
+      state: latest
+
+  - name: install poetry
+    ansible.builtin.shell: curl -sSL https://install.python-poetry.org | python3
+    args:
+      chdir: ~/.local/bin/
+      creates: poetry
+
+  - name: create directory for the To-Do app code
+    ansible.builtin.file:
+      path: /opt/todoapp
+      state: directory
+      owner: ec2-user
+    become: yes
+
+  - name: checkout the latest version of your To-Do App code into the folder /opt/todoapp
+    ansible.builtin.git:
+      repo: 'https://github.com/Ian-Davenport/DevOps-Course-Starter.git'
+      dest: /opt/todoapp
+      version: Module_4 
+
+
+  - name: add task to perform a "poetry install" from correct directory, so HOST VM has all project dependcies.
+    ansible.builtin.shell: 
+      cmd: bash -lc 'poetry install' 
+      chdir: /opt/todoapp
+      creates: .venv
+
+
+  - name: create a env file from a template
+    ansible.builtin.template: 
+      src: .env.j2
+      dest: /opt/todoapp/.env
+
+  - name: copy app.service from controller to host
+    ansible.builtin.copy:
+      src: todoapp.service
+      dest: /etc/systemd/system/todoapp.service
+    become: yes
+
+  - name: task to start To Do App
+    ansible.builtin.systemd:
+      state: started
+      name: todoapp
+      daemon_reload: yes
+    become: yes
+
+
+
+
+
