@@ -1,0 +1,21 @@
+services:
+  app-prod: 
+    container_name: production
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: production
+    ports: 
+      - 80:80
+    env_file:
+      - .env
+  app-dev:
+    container_name: development
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: development
+    ports: 
+      - 5000:5000
+    env_file:
+      - .env

@@ -3,3 +3,11 @@
 .github
 .gitignore
 .vscode
+.env
+Inventory
+playbook
+poetry.lock
+todoapp.service
+README.md 
+Dockerfile
+
