@@ -78,7 +78,7 @@ Ensure you can reach your Host VM via SSH for this to run successfully.
 
 # DOCKER
 
-# You will need to have the Docker Desktop app installed to run the following section. 
+# You will need to have the Docker Desktop app installed and running to run the following section. 
 # Visit https://www.docker.com/products/docker-desktop/  to download and install.
 
 

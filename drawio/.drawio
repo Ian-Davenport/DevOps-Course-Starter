@@ -1,0 +1,22 @@
+<mxfile host="65bd71144e" modified="2022-04-27T14:07:22.439Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.66.2 Chrome/98.0.4758.109 Electron/17.2.0 Safari/537.36" version="17.4.6" etag="rmn9GjvpUDXlweK-MJfk" type="embed">
+    <diagram id="fvFnIULvvAQzK9JU14sN" name="Page-1">
+        <mxGraphModel dx="876" dy="599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="1">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;font style=&quot;font-size: 17px&quot;&gt;Hi Corndel !!!&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="35" y="40" width="110" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Well despite what the Module 6 stretch goal suggests about us not to draw a code diagram ourselves as IDEs &amp;amp; code editors can generate code diagrams for us, I have no idea how." style="text;strokeColor=none;fillColor=none;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="41" y="100" width="579" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Despite searches on Google and YouTube, nothing found suggests the added VS Code extension of&amp;nbsp; Drawio can automatically make a diagram for us, as the stretch goal appears to suggest." style="text;strokeColor=none;fillColor=none;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="41" y="150" width="595" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;font style=&quot;font-size: 12px&quot;&gt;Everything found so far has the presenter adding all the shapes in themselves.&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rounded=1;fontSize=17;" vertex="1" parent="1">
+                    <mxGeometry x="41" y="210" width="430" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
