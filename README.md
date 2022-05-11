@@ -83,18 +83,24 @@ Ensure you can reach your Host VM via SSH for this to run successfully.
 
 
 # To BUILD then RUN the Production environment, enter each of the following two lines separately into the terminal and hit 'Enter' after each one:
-# To run Production container
+
+# To run PRODUCTION container
 $ docker build --target production --tag todo-app:prod .
 $ docker run -p 80:80 --env-file .env todo-app:prod
+# To see the above running, open your browser and type the following in the address bar: localhost:80
+
 
 # To BUILD then RUN the Development environment, enter the following two lines separately into the terminal and hit 'Enter' after each one:
-# To run Development container
+# To run DEVELOPMENT container
 $ docker build --target development --tag todo-app:dev .
 $ docker run -p 5000:5000 --env-file .env todo-app:dev
 
+# To see the above running, open your browser and type the following in the address bar: localhost:5000
+
+
 # However to simplify the build & run process, a yaml file has been created which contains all the instructions meeded to build and run both containers and saves you having to enter the long codes.
 # To use this feature, in the terminal simply type:
-$ docker compose run
+$ docker-compose up
 
 
 
