@@ -102,3 +102,5 @@ $ docker run -p 5000:5000 --env-file .env todo-app:dev
 # To use this feature, in the terminal simply type:
 $ docker-compose up
 
+
+
