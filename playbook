@@ -7,7 +7,7 @@
     
     - name: user_api_key
       prompt: What is your API Key ?
-      private: no
+      private: yes
 
     - name: user_api_token        
       prompt: What is your API Token ? 
