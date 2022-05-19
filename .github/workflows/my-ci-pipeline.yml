@@ -1,5 +1,13 @@
 name: Continuous Integration
-on: [push]
+on:
+  push:
+    branches:
+      - Module_7
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
 jobs: 
   build:
     name: Build and test
