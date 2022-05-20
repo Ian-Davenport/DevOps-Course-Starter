@@ -28,7 +28,7 @@ class StubResponse():
         return self.fake_response_data
 
 
-def get_lists_stub(url, headers):
+def get_lists_stub(url, params):
     test_board_id = os.environ.get('IAN_BOARD')
     fake_response_data = []
     if url.startswith(f'https://api.trello.com/1/boards/{test_board_id}/lists'):
