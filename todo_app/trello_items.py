@@ -13,15 +13,18 @@ done = os.getenv('DONE')
 
 
 def fetch_list():
-    call = f"https://api.trello.com/1/boards/{board}/lists?key={key}&token={token}&cards=open"
-    headers = {
-        "Accept": "application/json"
+    call = f"https://api.trello.com/1/boards/{os.getenv('IAN_BOARD')}/lists"
+    query_string_dictionary = {
+        "key": os.getenv('IAN_KEY'),
+        "token": os.getenv('IAN_TOKEN'),
+        "cards": "open"
     }
-    response = requests.request(
-        "GET",
+    
+    response = requests.get(
         url=call,
-        headers=headers
+        params=query_string_dictionary
     )
+
     result = response.json()
 
     tasks = []

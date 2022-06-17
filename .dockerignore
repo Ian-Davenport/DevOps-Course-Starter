@@ -4,6 +4,8 @@
 .gitignore
 .vscode
 .env
+.venv
+.git
 Inventory
 playbook
 poetry.lock

@@ -59,7 +59,7 @@ Please follow these steps in order to run the project:
 
 
 # TESTING
-A testing secion can be found in the code named 'test_view_model.py'.
+A testing secion can be found in the code named 'test_app.py'.
 Three unit tests have been created.
 
 To check on the testing, please run:
@@ -97,7 +97,6 @@ Ensure you can reach your Host VM via SSH for this to run successfully.
 2. $ docker run -p 5000:5000 --env-file .env todo-app:dev
 
 ** To see the above running, open your browser and type the following in the address bar: localhost:5000 
-
 
 #### However to simplify the build & run process, a yaml file has been created which contains all the instructions meeded to build and run both containers and saves you having to enter the long codes.
 **  To use this feature, in the terminal simply type: 
