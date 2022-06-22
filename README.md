@@ -117,3 +117,7 @@ In 'my-ci-pipeline.yml', line 25 amended from:
 TO:
     if: github.ref_name == 'todo-app-ian-module_8'    
 due to a new pipleline being created in Heroku with name from line 25 and not the already given name.
+
+Line 25 returned to  if: github.ref_name == 'module_8' as pipeline doesn't progress to 
+Docker in Github actions if I ask it to use 'todo-app-ian-module_8'
+
