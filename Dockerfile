@@ -17,6 +17,6 @@ CMD ["poetry", "run", "pytest"]
 
 FROM base as production
 EXPOSE 80
-RUN chmod +x "/opt/gunicorn.sh"
+# RUN chmod +x "/opt/gunicorn.sh"
 # ENTRYPOINT ["/opt/gunicorn.sh"]
-CMD poetry run gunicorn "todo_app.app:create_app()" -- bind 0.0.0.0:$PORT
+CMD poetry run gunicorn "todo_app.app:create_app()" --bind 0.0.0.0:$PORT
