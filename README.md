@@ -103,27 +103,13 @@ Ensure you can reach your Host VM via SSH for this to run successfully.
 **  To use this feature, in the terminal simply type: 
 1. $ docker-compose up
 
-*** Ian's Note on Docker:- Received feedback from Hugh @ Corndel on 13-04-2022 of amendments to make to this codebase. When these amendments were implemented, the code had errors and would not work. 
-Code returned to 'as was' and works perfectly. Therefore Corndel feedback suggestions gratefully received, though not actioned.  ***
-
 
 #### HEROKU ####
 https://todo-app-ian-module-8.herokuapp.com/
 
-Exercise feedback- testing changes
-
-In 'my-ci-pipeline.yml', line 25 amended from:
-    if: github.ref_name == 'module_8'
-TO:
-    if: github.ref_name == 'todo-app-ian-module_8'    
-due to a new pipleline being created in Heroku with name from line 25 and not the already given name.
-
-Line 25 returned to  if: github.ref_name == 'module_8' as pipeline doesn't progress to 
-Docker in Github actions if I ask it to use 'todo-app-ian-module_8'
-
-Update 4:
-Spotted 'my-ci-pipeline.yml' line 48:
-    This was:  heroku_app_name: "ian-module-8"
-Now changed to:  heroku_app_name: "todo-app-ian-module-8" to check if it prevents Heroku 
-creating a new container.
+Exercise feedback:
+Fixed issue whereby Heroku was creating a new container each time.
+On 'my-ci-pipeline.yml' line 48:  This was: heroku_app_name:"ian-module-8"
+    Changed to: heroku_app_name:"todo-app-ian-module-8"
+Established Heroku was creating a new container due to line 48. Resolved.
 
