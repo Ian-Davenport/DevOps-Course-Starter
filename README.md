@@ -110,3 +110,10 @@ Code returned to 'as was' and works perfectly. Therefore Corndel feedback sugges
 #### HEROKU ####
 https://todo-app-ian-module-8.herokuapp.com/
 
+Exercise feedback- testing changes
+
+In 'my-ci-pipeline.yml', line 25 amended from:
+    if: github.ref_name == 'module_8'
+TO:
+    if: github.ref_name == 'todo-app-ian-module_8'    
+due to a new pipleline being created in Heroku with name from line 25 and not the already given name.
