@@ -121,3 +121,9 @@ due to a new pipleline being created in Heroku with name from line 25 and not th
 Line 25 returned to  if: github.ref_name == 'module_8' as pipeline doesn't progress to 
 Docker in Github actions if I ask it to use 'todo-app-ian-module_8'
 
+Update 4:
+Spotted 'my-ci-pipeline.yml' line 48:
+    This was:  heroku_app_name: "ian-module-8"
+Now changed to:  heroku_app_name: "todo-app-ian-module-8" to check if it prevents Heroku 
+creating a new container.
+

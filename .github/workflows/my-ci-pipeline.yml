@@ -45,7 +45,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API}}
-          heroku_app_name: "ian-module-8"
+          heroku_app_name: "todo-app-ian-module-8"
           heroku_email: "ian.davenport@kpmg.co.uk"
           usedocker: true
 
