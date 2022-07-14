@@ -102,5 +102,4 @@ Ensure you can reach your Host VM via SSH for this to run successfully.
 **  To use this feature, in the terminal simply type: 
 1. $ docker-compose up
 
-*** Ian's Note on Docker:- Received feedback from Hugh @ Corndel on 13-04-2022 of amendments to make to this codebase. When these amendments were implemented, the code had errors and would not work. 
-Code returned to 'as was' and works perfectly. Therefore Corndel feedback suggestions gratefully received, though not actioned.  ***
+
