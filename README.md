@@ -16,7 +16,7 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-
 (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py -UseBasicParsing).Content | python -
 ```
 
-## Dependencies
+#### Dependencies
 
 The project uses a virtual environment to isolate package dependencies. To create the virtual environment and install required packages, run the following from your preferred shell:
 
@@ -32,7 +32,7 @@ $ cp .env.template .env  # (first time only)
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
 
-## RUNNING THE APP
+#### RUNNING THE APP
 Once the all dependencies have been installed, start the Flask app in development mode within the Poetry environment by running:
 ```bash
 $ poetry run flask run
@@ -98,19 +98,8 @@ Ensure you can reach your Host VM via SSH for this to run successfully.
 
 ** To see the above running, open your browser and type the following in the address bar: localhost:5000 
 
-
 #### However to simplify the build & run process, a yaml file has been created which contains all the instructions meeded to build and run both containers and saves you having to enter the long codes.
 **  To use this feature, in the terminal simply type: 
 1. $ docker-compose up
-
-
-#### HEROKU ####
-https://todo-app-ian-module-8.herokuapp.com/
-
-Exercise feedback:
-Fixed issue whereby Heroku was creating a new container each time.
-On 'my-ci-pipeline.yml' line 48:  This was: heroku_app_name:"ian-module-8"
-    Changed to: heroku_app_name:"todo-app-ian-module-8"
-Established Heroku was creating a new container due to line 48. Resolved.
 
 
