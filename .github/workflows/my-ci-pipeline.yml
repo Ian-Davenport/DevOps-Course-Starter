@@ -34,7 +34,7 @@ jobs:
       run: echo ${{secrets.DOCKER_HUB_TOKEN}} | docker login --username miraclemag1c --password-stdin
 
     - name: push
-      run: docker push miraclemag1c/todo-app-ian-module_9
+      run: docker push miraclemag1c/todo-app-ian:module_9
 
 
   webhook:
