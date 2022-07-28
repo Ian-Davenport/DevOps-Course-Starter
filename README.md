@@ -103,3 +103,19 @@ Ensure you can reach your Host VM via SSH for this to run successfully.
 1. $ docker-compose up
 
 
+#### HEROKU ####
+This is the Module_8 project exercise.
+https://todo-app-ian-module-8.herokuapp.com/
+
+Exercise feedback:
+Fixed issue whereby Heroku was creating a new container each time.
+On 'my-ci-pipeline.yml' line 48:  This was: heroku_app_name:"ian-module-8"
+    Changed to: heroku_app_name:"todo-app-ian-module-8"
+Established Heroku was creating a new container due to line 48. Resolved.
+
+
+#### AZURE ####
+For Module_9 project exercise we carried on from last time, but rather than have 
+Docker publish to Heroku, this time Docker published to Azure instead. 
+
+=======
